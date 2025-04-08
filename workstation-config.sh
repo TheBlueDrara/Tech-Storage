@@ -9,19 +9,19 @@ set -o pipefail
 ##################################### End Safe Header ###############################
 
 
-# HERE YOU WILL FIND ALL THE DIFFERENT TAMPLATES
+# HERE YOU WILL FIND ALL THE DIFFERENT TEMPLATES
 
 ####################################################################################
 ************************************************************************************
 ************************************************************************************
 ############ Checks if the OS is debian based ######################################
 
-source /etc/os-realse
+source /etc/os-release
 
-if [[ $ID_LIKE == "*debian*" ]]; then
+if [[ $ID_LIKE == "debian" ]]; then
 	echo "Running on Debian-family distro. Executing main code..."
 else
-	echo "This script is designed to run only on Debian-family distory only!"
+	echo "This script is designed to run only on Debian-family distro only!"
 	exit 1
 fi
 
@@ -33,7 +33,7 @@ fi
 source tool_list.txt # Create a text file with a var named TOOLS that contains a list of tools you want to download
 
 function main(){
-	for index in TOOLS; do
+	for index in ${TOOLS[@]}; do
 		check_and_install "$index"
 	done
 }
